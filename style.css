@@ -1,27 +1,21 @@
 /* ============================================= */
-/*  Follow Analyzer - Main Stylesheet            */
-/*  ترکیب: بنتو گرید + گلسمورفیسم + نئومورفیسم   */
+/*  Follow Analyzer v2.1 - Stylesheet            */
+/*  بنتو گرید 30% + گلسمورفیسم 40% + نئومورفیسم 30% */
 /*  تم: سفید صدفی + پاستیلی شاد                  */
 /* ============================================= */
 
-/* ----------------------------------------- */
-/* ریست و تنظیمات پایه                        */
-/* ----------------------------------------- */
-*,
-*::before,
-*::after {
+/* ── ریست و تنظیمات پایه ── */
+*, *::before, *::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
 :root {
-    /* رنگ‌های پایه - تم سفید صدفی */
     --bg-primary: #F8F6F2;
     --bg-secondary: #FFFDF9;
     --bg-card: rgba(255, 255, 255, 0.55);
     
-    /* رنگ‌های پاستیلی شاد */
     --pastel-pink: #FFB5C2;
     --pastel-blue: #B5D8FF;
     --pastel-green: #B5FFD0;
@@ -31,35 +25,28 @@
     --pastel-mint: #B5FFE1;
     --pastel-lavender: #E8D5FF;
     
-    /* رنگ‌های متن */
     --text-primary: #2D2B3D;
     --text-secondary: #6B6880;
     --text-muted: #9B98AE;
     
-    /* سایه‌های نئومورفیسم */
     --neo-shadow-light: #FFFFFF;
     --neo-shadow-dark: rgba(174, 174, 192, 0.4);
     --neo-inset-light: #FFFFFF;
     --neo-inset-dark: rgba(174, 174, 192, 0.25);
     
-    /* گلسمورفیسم */
     --glass-bg: rgba(255, 255, 255, 0.45);
     --glass-border: rgba(255, 255, 255, 0.6);
     --glass-blur: 20px;
     
-    /* فونت */
     --font-main: 'Vazirmatn', 'Segoe UI', Tahoma, sans-serif;
     
-    /* بردر ردیوس */
     --radius-sm: 12px;
     --radius-md: 18px;
     --radius-lg: 24px;
     --radius-xl: 32px;
     
-    /* ترنزیشن */
     --transition-fast: 0.2s ease;
     --transition-normal: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 html {
@@ -73,19 +60,15 @@ body {
     color: var(--text-primary);
     min-height: 100vh;
     line-height: 1.7;
-    /* پترن ظریف بکگراند */
-    background-image: 
+    background-image:
         radial-gradient(circle at 20% 20%, rgba(255, 181, 194, 0.15) 0%, transparent 50%),
         radial-gradient(circle at 80% 80%, rgba(181, 216, 255, 0.15) 0%, transparent 50%),
         radial-gradient(circle at 50% 50%, rgba(212, 181, 255, 0.1) 0%, transparent 50%);
     background-attachment: fixed;
 }
 
-/* ----------------------------------------- */
-/* هدر اپلیکیشن                               */
-/* ----------------------------------------- */
+/* ── هدر ── */
 .app-header {
-    /* گلسمورفیسم برای هدر */
     background: var(--glass-bg);
     backdrop-filter: blur(var(--glass-blur));
     -webkit-backdrop-filter: blur(var(--glass-blur));
@@ -97,10 +80,7 @@ body {
     z-index: 100;
 }
 
-.header-content {
-    max-width: 800px;
-    margin: 0 auto;
-}
+.header-content { max-width: 800px; margin: 0 auto; }
 
 .logo-wrapper {
     display: flex;
@@ -135,37 +115,28 @@ body {
     font-weight: 500;
 }
 
-/* ----------------------------------------- */
-/* کانتینر اصلی                               */
-/* ----------------------------------------- */
+/* ── کانتینر ── */
 .main-container {
     max-width: 1100px;
     margin: 0 auto;
     padding: 2rem 1.5rem;
 }
 
-/* ----------------------------------------- */
-/* بنتو گرید - لایوت اصلی                     */
-/* ----------------------------------------- */
+/* ── بنتو گرید ── */
 .bento-grid {
     display: grid;
     gap: 1.25rem;
 }
 
 .upload-section {
-    /* بنتو گرید 3 ستونه */
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto auto;
 }
 
-.upload-section .guide-card {
-    /* کارت راهنما کل عرض رو بگیره */
-    grid-column: 1 / -1;
-}
+.upload-section .guide-card { grid-column: 1 / -1; }
+.upload-section .preview-card { grid-column: 1 / -1; }
 
-/* ----------------------------------------- */
-/* کارت‌های گلسمورفیسم                         */
-/* ----------------------------------------- */
+/* ── کارت گلسمورفیسم ── */
 .glass-card {
     background: var(--glass-bg);
     backdrop-filter: blur(var(--glass-blur));
@@ -182,46 +153,36 @@ body {
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06);
 }
 
-/* ----------------------------------------- */
-/* کارت‌های نئومورفیسم                         */
-/* ----------------------------------------- */
+/* ── کارت نئومورفیسم ── */
 .neo-card {
     background: var(--bg-secondary);
     border-radius: var(--radius-lg);
     padding: 1.75rem;
-    /* سایه نئومورفیسم کلاسیک */
-    box-shadow: 
+    box-shadow:
         8px 8px 16px var(--neo-shadow-dark),
         -8px -8px 16px var(--neo-shadow-light);
     transition: var(--transition-normal);
 }
 
 .neo-card:hover {
-    box-shadow: 
+    box-shadow:
         10px 10px 20px var(--neo-shadow-dark),
         -10px -10px 20px var(--neo-shadow-light);
     transform: translateY(-2px);
 }
 
-/* ----------------------------------------- */
-/* کارت راهنما                                 */
-/* ----------------------------------------- */
+/* ── کارت راهنما ── */
 .guide-card {
     background: linear-gradient(135deg, rgba(255, 181, 194, 0.2), rgba(181, 216, 255, 0.2));
     backdrop-filter: blur(25px);
-    -webkit-backdrop-filter: blur(25px);
 }
 
-.card-icon {
-    font-size: 2.5rem;
-    margin-bottom: 0.75rem;
-}
+.card-icon { font-size: 2.5rem; margin-bottom: 0.75rem; }
 
 .guide-card h2 {
     font-size: 1.3rem;
     font-weight: 800;
     margin-bottom: 1rem;
-    color: var(--text-primary);
 }
 
 .guide-steps {
@@ -264,15 +225,27 @@ body {
     border-radius: 6px;
     font-size: 0.85rem;
     font-family: 'Courier New', monospace;
+}
+
+/* ── کارت پیش‌نمایش / تست ── */
+.preview-card {
+    text-align: center;
+    background: linear-gradient(135deg, rgba(181, 255, 208, 0.15), rgba(255, 243, 181, 0.15));
+}
+
+.preview-hint {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+}
+
+.btn-demo {
+    background: linear-gradient(135deg, var(--pastel-green), var(--pastel-mint));
     color: var(--text-primary);
 }
 
-/* ----------------------------------------- */
-/* کارت‌های آپلود                              */
-/* ----------------------------------------- */
-.upload-card {
-    text-align: center;
-}
+/* ── کارت آپلود ── */
+.upload-card { text-align: center; }
 
 .upload-card h3 {
     font-size: 1.15rem;
@@ -286,7 +259,6 @@ body {
     margin-bottom: 1rem;
 }
 
-/* ناحیه دراگ و دراپ */
 .drop-zone {
     border: 2.5px dashed var(--pastel-purple);
     border-radius: var(--radius-md);
@@ -311,22 +283,10 @@ body {
     cursor: pointer;
 }
 
-.drop-icon {
-    font-size: 2.5rem;
-    transition: var(--transition-normal);
-}
+.drop-icon { font-size: 2.5rem; transition: var(--transition-normal); }
+.drop-zone:hover .drop-icon { transform: scale(1.15); }
+.drop-text { font-size: 0.85rem; color: var(--text-secondary); font-weight: 500; }
 
-.drop-zone:hover .drop-icon {
-    transform: scale(1.15);
-}
-
-.drop-text {
-    font-size: 0.85rem;
-    color: var(--text-secondary);
-    font-weight: 500;
-}
-
-/* وضعیت فایل */
 .file-status {
     display: flex;
     align-items: center;
@@ -360,9 +320,20 @@ body {
     font-weight: 600;
 }
 
-/* ----------------------------------------- */
-/* دکمه‌های عملیاتی                            */
-/* ----------------------------------------- */
+.upload-card.loaded {
+    border: 2px solid rgba(181, 255, 208, 0.6);
+    box-shadow:
+        8px 8px 16px var(--neo-shadow-dark),
+        -8px -8px 16px var(--neo-shadow-light),
+        0 0 20px rgba(181, 255, 208, 0.15);
+}
+
+.upload-card.loaded .drop-zone {
+    border-color: var(--pastel-green);
+    background: rgba(181, 255, 208, 0.08);
+}
+
+/* ── دکمه‌ها ── */
 .action-buttons {
     display: flex;
     justify-content: center;
@@ -383,24 +354,19 @@ body {
     font-weight: 700;
     cursor: pointer;
     transition: var(--transition-normal);
-    /* نئومورفیسم برای دکمه‌ها */
-    box-shadow: 
+    box-shadow:
         5px 5px 10px var(--neo-shadow-dark),
         -5px -5px 10px var(--neo-shadow-light);
 }
 
 .btn:active {
-    box-shadow: 
+    box-shadow:
         inset 3px 3px 6px var(--neo-inset-dark),
         inset -3px -3px 6px var(--neo-inset-light);
     transform: scale(0.97);
 }
 
-.btn:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-    transform: none;
-}
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
 
 .btn-analyze {
     background: linear-gradient(135deg, var(--pastel-purple), var(--pastel-pink));
@@ -409,7 +375,7 @@ body {
 
 .btn-analyze:hover:not(:disabled) {
     transform: translateY(-3px);
-    box-shadow: 
+    box-shadow:
         0 10px 30px rgba(212, 181, 255, 0.4),
         5px 5px 10px var(--neo-shadow-dark),
         -5px -5px 10px var(--neo-shadow-light);
@@ -420,10 +386,7 @@ body {
     color: var(--text-secondary);
 }
 
-.btn-clear:hover {
-    color: #e74c3c;
-    transform: translateY(-2px);
-}
+.btn-clear:hover { color: #e74c3c; transform: translateY(-2px); }
 
 .btn-export {
     background: linear-gradient(135deg, var(--pastel-blue), var(--pastel-mint));
@@ -432,35 +395,42 @@ body {
 
 .btn-export:hover:not(:disabled) {
     transform: translateY(-3px);
-    box-shadow: 
+    box-shadow:
         0 10px 30px rgba(181, 216, 255, 0.4),
         5px 5px 10px var(--neo-shadow-dark),
         -5px -5px 10px var(--neo-shadow-light);
 }
 
-.btn-icon {
-    font-size: 1.2rem;
+.btn-icon { font-size: 1.2rem; }
+
+/* ── دیباگ ── */
+.debug-section { margin-bottom: 1.5rem; }
+
+.debug-output {
+    background: rgba(45, 43, 61, 0.05);
+    border-radius: var(--radius-sm);
+    padding: 1rem;
+    font-size: 0.75rem;
+    font-family: 'Courier New', monospace;
+    max-height: 200px;
+    overflow-y: auto;
+    white-space: pre-wrap;
+    word-break: break-all;
+    direction: ltr;
+    text-align: left;
+    color: var(--text-secondary);
 }
 
-/* ----------------------------------------- */
-/* بخش نتایج                                  */
-/* ----------------------------------------- */
+/* ── نتایج ── */
 .results-section {
-    animation: fadeInUp 0.6s var(--transition-normal);
+    animation: fadeInUp 0.6s ease;
 }
 
 @keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-/* کارت‌های آماری - بنتو گرید */
 .stats-grid {
     grid-template-columns: repeat(3, 1fr);
     margin-bottom: 2rem;
@@ -492,21 +462,14 @@ body {
 .stat-fans::after { background: linear-gradient(90deg, var(--pastel-yellow), var(--pastel-orange)); }
 .stat-ratio::after { background: linear-gradient(90deg, var(--pastel-lavender), var(--pastel-blue)); }
 
-.stat-icon {
-    font-size: 2.2rem;
-    flex-shrink: 0;
-}
+.stat-icon { font-size: 2.2rem; flex-shrink: 0; }
 
-.stat-info {
-    display: flex;
-    flex-direction: column;
-}
+.stat-info { display: flex; flex-direction: column; }
 
 .stat-number {
     font-size: 1.8rem;
     font-weight: 900;
     line-height: 1.2;
-    color: var(--text-primary);
 }
 
 .stat-label {
@@ -515,9 +478,7 @@ body {
     font-weight: 500;
 }
 
-/* ----------------------------------------- */
-/* تب‌ها                                       */
-/* ----------------------------------------- */
+/* ── تب‌ها ── */
 .tabs-wrapper {
     background: var(--glass-bg);
     backdrop-filter: blur(var(--glass-blur));
@@ -534,14 +495,10 @@ body {
     margin-bottom: 1.25rem;
     overflow-x: auto;
     padding-bottom: 0.25rem;
-    /* اسکرول بار مخفی */
     scrollbar-width: none;
-    -ms-overflow-style: none;
 }
 
-.tabs-header::-webkit-scrollbar {
-    display: none;
-}
+.tabs-header::-webkit-scrollbar { display: none; }
 
 .tab-btn {
     flex-shrink: 0;
@@ -564,18 +521,16 @@ body {
 }
 
 .tab-btn.active {
-    /* نئومورفیسم فشرده */
     background: var(--bg-secondary);
     color: var(--text-primary);
-    box-shadow: 
+    box-shadow:
         inset 2px 2px 4px var(--neo-inset-dark),
         inset -2px -2px 4px var(--neo-inset-light);
 }
 
-/* جستجو */
-.search-wrapper {
-    margin-bottom: 1.25rem;
-}
+.tab-count { font-weight: 800; }
+
+.search-wrapper { margin-bottom: 1.25rem; }
 
 .search-input {
     width: 100%;
@@ -586,26 +541,21 @@ body {
     font-family: var(--font-main);
     font-size: 0.9rem;
     color: var(--text-primary);
-    /* نئومورفیسم ورودی */
-    box-shadow: 
+    box-shadow:
         inset 3px 3px 6px var(--neo-inset-dark),
         inset -3px -3px 6px var(--neo-inset-light);
-    transition: var(--transition-fast);
     outline: none;
+    transition: var(--transition-fast);
 }
 
 .search-input:focus {
-    box-shadow: 
+    box-shadow:
         inset 3px 3px 6px var(--neo-inset-dark),
         inset -3px -3px 6px var(--neo-inset-light),
         0 0 0 3px rgba(212, 181, 255, 0.3);
 }
 
-/* محتوای تب‌ها */
-.tab-content {
-    display: none;
-}
-
+.tab-content { display: none; }
 .tab-content.active {
     display: block;
     animation: fadeIn 0.3s ease;
@@ -616,30 +566,21 @@ body {
     to { opacity: 1; }
 }
 
-/* لیست کاربرها */
 .list-container {
     max-height: 450px;
     overflow-y: auto;
     padding-left: 0.5rem;
-    /* اسکرول بار سفارشی */
     scrollbar-width: thin;
     scrollbar-color: var(--pastel-purple) transparent;
 }
 
-.list-container::-webkit-scrollbar {
-    width: 6px;
-}
-
-.list-container::-webkit-scrollbar-track {
-    background: transparent;
-}
-
+.list-container::-webkit-scrollbar { width: 6px; }
+.list-container::-webkit-scrollbar-track { background: transparent; }
 .list-container::-webkit-scrollbar-thumb {
     background: var(--pastel-purple);
     border-radius: 10px;
 }
 
-/* آیتم کاربر */
 .user-item {
     display: flex;
     align-items: center;
@@ -658,11 +599,7 @@ body {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 }
 
-.user-info {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-}
+.user-info { display: flex; align-items: center; gap: 0.75rem; }
 
 .user-avatar {
     width: 36px;
@@ -680,21 +617,23 @@ body {
 .user-name {
     font-size: 0.9rem;
     font-weight: 600;
-    color: var(--text-primary);
     direction: ltr;
     text-align: left;
 }
 
-.user-link {
-    font-size: 0.75rem;
-    color: var(--text-muted);
+.insta-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    color: var(--pastel-purple);
     text-decoration: none;
+    font-size: 0.78rem;
+    font-weight: 600;
     direction: ltr;
+    transition: var(--transition-fast);
 }
 
-.user-link:hover {
-    color: var(--pastel-purple);
-}
+.insta-link:hover { color: var(--pastel-pink); text-decoration: underline; }
 
 .user-index {
     font-size: 0.75rem;
@@ -706,7 +645,6 @@ body {
     flex-shrink: 0;
 }
 
-/* رنگ‌های آواتار تصادفی */
 .avatar-1 { background: linear-gradient(135deg, #FFB5C2, #FF8FA3); }
 .avatar-2 { background: linear-gradient(135deg, #B5D8FF, #89B4FA); }
 .avatar-3 { background: linear-gradient(135deg, #B5FFD0, #7DD3A0); }
@@ -714,7 +652,6 @@ body {
 .avatar-5 { background: linear-gradient(135deg, #FFD4B5, #FFB088); }
 .avatar-6 { background: linear-gradient(135deg, #FFF3B5, #FFE380); }
 
-/* پیام خالی */
 .empty-message {
     text-align: center;
     padding: 3rem 1rem;
@@ -728,9 +665,7 @@ body {
     margin-bottom: 0.75rem;
 }
 
-/* ----------------------------------------- */
-/* فوتر                                       */
-/* ----------------------------------------- */
+/* ── فوتر ── */
 .app-footer {
     text-align: center;
     padding: 2rem 1rem;
@@ -738,9 +673,7 @@ body {
     font-size: 0.8rem;
 }
 
-/* ----------------------------------------- */
-/* انیمیشن لودینگ                              */
-/* ----------------------------------------- */
+/* ── لودینگ ── */
 .loading-overlay {
     position: fixed;
     inset: 0;
@@ -750,7 +683,6 @@ body {
     align-items: center;
     justify-content: center;
     z-index: 1000;
-    animation: fadeIn 0.2s ease;
 }
 
 .loading-spinner {
@@ -760,10 +692,7 @@ body {
     gap: 1rem;
 }
 
-.spinner-dots {
-    display: flex;
-    gap: 0.5rem;
-}
+.spinner-dots { display: flex; gap: 0.5rem; }
 
 .spinner-dots span {
     width: 14px;
@@ -772,35 +701,18 @@ body {
     animation: dotBounce 1.4s ease-in-out infinite;
 }
 
-.spinner-dots span:nth-child(1) {
-    background: var(--pastel-pink);
-    animation-delay: 0s;
-}
-
-.spinner-dots span:nth-child(2) {
-    background: var(--pastel-purple);
-    animation-delay: 0.2s;
-}
-
-.spinner-dots span:nth-child(3) {
-    background: var(--pastel-blue);
-    animation-delay: 0.4s;
-}
+.spinner-dots span:nth-child(1) { background: var(--pastel-pink); animation-delay: 0s; }
+.spinner-dots span:nth-child(2) { background: var(--pastel-purple); animation-delay: 0.2s; }
+.spinner-dots span:nth-child(3) { background: var(--pastel-blue); animation-delay: 0.4s; }
 
 @keyframes dotBounce {
     0%, 80%, 100% { transform: scale(0.6); opacity: 0.5; }
     40% { transform: scale(1.2); opacity: 1; }
 }
 
-.loading-text {
-    font-size: 0.95rem;
-    color: var(--text-secondary);
-    font-weight: 600;
-}
+.loading-text { font-size: 0.95rem; color: var(--text-secondary); font-weight: 600; }
 
-/* ----------------------------------------- */
-/* نوتیفیکیشن (Toast)                         */
-/* ----------------------------------------- */
+/* ── Toast ── */
 .toast {
     position: fixed;
     bottom: 2rem;
@@ -815,171 +727,42 @@ body {
     opacity: 0;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+    max-width: 90vw;
+    text-align: center;
 }
 
-.toast.show {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
-.toast.success {
-    background: rgba(181, 255, 208, 0.85);
-    color: #1B5E20;
-    border: 1px solid rgba(181, 255, 208, 0.9);
-}
+.toast.success { background: rgba(181, 255, 208, 0.9); color: #1B5E20; border: 1px solid rgba(181, 255, 208, 0.9); }
+.toast.error { background: rgba(255, 181, 194, 0.9); color: #B71C1C; border: 1px solid rgba(255, 181, 194, 0.9); }
+.toast.info { background: rgba(181, 216, 255, 0.9); color: #0D47A1; border: 1px solid rgba(181, 216, 255, 0.9); }
 
-.toast.error {
-    background: rgba(255, 181, 194, 0.85);
-    color: #B71C1C;
-    border: 1px solid rgba(255, 181, 194, 0.9);
-}
-
-.toast.info {
-    background: rgba(181, 216, 255, 0.85);
-    color: #0D47A1;
-    border: 1px solid rgba(181, 216, 255, 0.9);
-}
-
-/* ----------------------------------------- */
-/* ریسپانسیو - تبلت                           */
-/* ----------------------------------------- */
+/* ── ریسپانسیو تبلت ── */
 @media (max-width: 768px) {
-    html {
-        font-size: 15px;
-    }
-    
-    .app-title {
-        font-size: 1.5rem;
-    }
-    
-    .upload-section {
-        grid-template-columns: 1fr;
-    }
-    
-    .stats-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .action-buttons {
-        flex-direction: column;
-        align-items: stretch;
-    }
-    
-    .btn {
-        justify-content: center;
-    }
-    
-    .main-container {
-        padding: 1.25rem 1rem;
-    }
+    html { font-size: 15px; }
+    .app-title { font-size: 1.5rem; }
+    .upload-section { grid-template-columns: 1fr; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .action-buttons { flex-direction: column; align-items: stretch; }
+    .btn { justify-content: center; }
+    .main-container { padding: 1.25rem 1rem; }
 }
 
-/* ----------------------------------------- */
-/* ریسپانسیو - موبایل                         */
-/* ----------------------------------------- */
+/* ── ریسپانسیو موبایل ── */
 @media (max-width: 480px) {
-    html {
-        font-size: 14px;
-    }
-    
-    .app-header {
-        padding: 1.25rem 1rem;
-    }
-    
-    .app-title {
-        font-size: 1.35rem;
-    }
-    
-    .stats-grid {
-        grid-template-columns: 1fr 1fr;
-    }
-    
-    .stat-card {
-        padding: 1rem;
-    }
-    
-    .stat-number {
-        font-size: 1.4rem;
-    }
-    
-    .stat-icon {
-        font-size: 1.8rem;
-    }
-    
-    .tabs-header {
-        gap: 0.35rem;
-    }
-    
-    .tab-btn {
-        padding: 0.5rem 0.85rem;
-        font-size: 0.78rem;
-    }
-    
-    .glass-card,
-    .neo-card {
-        padding: 1.25rem;
-        border-radius: var(--radius-md);
-    }
-    
-    .tabs-wrapper {
-        padding: 1rem;
-        border-radius: var(--radius-lg);
-    }
-    
-    .guide-steps li {
-        font-size: 0.82rem;
-    }
-    
-    .user-item {
-        padding: 0.6rem 0.75rem;
-    }
-    
-    .list-container {
-        max-height: 350px;
-    }
-}
-
-/* ----------------------------------------- */
-/* انیمیشن شمارنده اعداد                       */
-/* ----------------------------------------- */
-.stat-number {
-    transition: var(--transition-normal);
-}
-
-/* ----------------------------------------- -->
-/* حالت‌های خاص                                */
-/* ----------------------------------------- */
-
-/* وقتی فایل لود شده کارت حالت موفق بگیره */
-.upload-card.loaded {
-    border: 2px solid rgba(181, 255, 208, 0.6);
-    box-shadow: 
-        8px 8px 16px var(--neo-shadow-dark),
-        -8px -8px 16px var(--neo-shadow-light),
-        0 0 20px rgba(181, 255, 208, 0.15);
-}
-
-.upload-card.loaded .drop-zone {
-    border-color: var(--pastel-green);
-    background: rgba(181, 255, 208, 0.08);
-}
-
-/* دکمه لینک اینستاگرام */
-.insta-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.25rem;
-    color: var(--pastel-purple);
-    text-decoration: none;
-    font-size: 0.78rem;
-    font-weight: 600;
-    transition: var(--transition-fast);
-    direction: ltr;
-}
-
-.insta-link:hover {
-    color: var(--pastel-pink);
-    text-decoration: underline;
+    html { font-size: 14px; }
+    .app-header { padding: 1.25rem 1rem; }
+    .app-title { font-size: 1.35rem; }
+    .stats-grid { grid-template-columns: 1fr 1fr; }
+    .stat-card { padding: 1rem; }
+    .stat-number { font-size: 1.4rem; }
+    .stat-icon { font-size: 1.8rem; }
+    .tabs-header { gap: 0.35rem; }
+    .tab-btn { padding: 0.5rem 0.85rem; font-size: 0.78rem; }
+    .glass-card, .neo-card { padding: 1.25rem; border-radius: var(--radius-md); }
+    .tabs-wrapper { padding: 1rem; border-radius: var(--radius-lg); }
+    .guide-steps li { font-size: 0.82rem; }
+    .user-item { padding: 0.6rem 0.75rem; }
+    .list-container { max-height: 350px; }
 }
