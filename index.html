@@ -3,210 +3,296 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>📊 Follow Analyzer | تحلیلگر فالوورها</title>
-
-    <!-- فونت وزیرمتن -->
-    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet">
-
-    <!-- کتابخانه html2canvas برای خروجی PNG -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-
-    <!-- استایل -->
+    <title>تحلیلگر فالوورهای اینستاگرام | InstaLens</title>
+    
+    <!-- ──────────── فونت‌های گوگل ──────────── -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- ──────────── استایل‌شیت اصلی ──────────── -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- ============================================= -->
-    <!-- هدر اصلی                                       -->
-    <!-- ============================================= -->
+    <!-- ══════════════════════════════════════════════════════════ 
+         هدر اصلی اپلیکیشن
+    ══════════════════════════════════════════════════════════ -->
     <header class="app-header">
         <div class="header-content">
             <div class="logo-wrapper">
-                <span class="logo-icon">🔎</span>
-                <h1 class="app-title">Follow Analyzer</h1>
+                <div class="logo-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                        <circle cx="9" cy="7" r="4"/>
+                        <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                    </svg>
+                </div>
+                <div class="logo-text">
+                    <h1>InstaLens</h1>
+                    <span class="tagline">تحلیلگر هوشمند فالوورها</span>
+                </div>
             </div>
-            <p class="app-subtitle">کی فالوت کرده؟ کی نکرده؟ بیا ببین! 🕵️‍♂️</p>
+            <div class="header-actions">
+                <button class="btn-icon" id="themeToggle" title="تغییر تم">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="5"/>
+                        <line x1="12" y1="1" x2="12" y2="3"/>
+                        <line x1="12" y1="21" x2="12" y2="23"/>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                        <line x1="1" y1="12" x2="3" y2="12"/>
+                        <line x1="21" y1="12" x2="23" y2="12"/>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                    </svg>
+                </button>
+                <button class="btn-icon" id="clearStorage" title="پاک‌سازی حافظه">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="3 6 5 6 21 6"/>
+                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+                    </svg>
+                </button>
+            </div>
         </div>
     </header>
 
-    <!-- ============================================= -->
-    <!-- محتوای اصلی                                    -->
-    <!-- ============================================= -->
-    <main class="main-container">
+    <!-- ══════════════════════════════════════════════════════════ 
+         محتوای اصلی
+    ══════════════════════════════════════════════════════════ -->
+    <main class="app-main">
+        
+        <!-- ────────── بخش آپلود فایل‌ها ────────── -->
+        <section class="upload-section" id="uploadSection">
+            <div class="bento-grid upload-grid">
+                
+                <!-- کارت آپلود فالوورها -->
+                <div class="upload-card glass-card" id="followersCard">
+                    <div class="upload-zone" id="followersZone" data-type="followers">
+                        <div class="upload-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                <circle cx="9" cy="7" r="4"/>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                            </svg>
+                        </div>
+                        <h3>فایل فالوورها</h3>
+                        <p>followers_1.json رو اینجا بنداز</p>
+                        <span class="upload-hint">یا کلیک کن برای انتخاب</span>
+                        <input type="file" id="followersInput" accept=".json" hidden>
+                        <div class="upload-status" id="followersStatus"></div>
+                    </div>
+                </div>
 
-        <!-- بخش آپلود -->
-        <section class="bento-grid upload-section">
+                <!-- کارت آپلود فالووینگ‌ها -->
+                <div class="upload-card glass-card" id="followingCard">
+                    <div class="upload-zone" id="followingZone" data-type="following">
+                        <div class="upload-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                                <circle cx="9" cy="7" r="4"/>
+                                <line x1="20" y1="8" x2="20" y2="14"/>
+                                <line x1="23" y1="11" x2="17" y2="11"/>
+                            </svg>
+                        </div>
+                        <h3>فایل فالووینگ</h3>
+                        <p>following.json رو اینجا بنداز</p>
+                        <span class="upload-hint">یا کلیک کن برای انتخاب</span>
+                        <input type="file" id="followingInput" accept=".json" hidden>
+                        <div class="upload-status" id="followingStatus"></div>
+                    </div>
+                </div>
 
-            <!-- کارت راهنما -->
-            <div class="glass-card guide-card">
-                <div class="card-icon">📋</div>
-                <h2>راهنمای استفاده</h2>
-                <ol class="guide-steps">
-                    <li>وارد اینستاگرام شو → <strong>Settings → Accounts Center → Your information and permissions → Download your information</strong></li>
-                    <li>گزینه <strong>Download or transfer information</strong> رو بزن</li>
-                    <li>اکانتتو انتخاب کن → <strong>Some of your information</strong> → فقط <strong>Followers and Following</strong> رو تیک بزن</li>
-                    <li>فرمت رو <strong>JSON</strong> بذار و دانلود کن</li>
-                    <li>از فایل زیپ، فایل <code>followers_1.json</code> و <code>following.json</code> رو آپلود کن</li>
-                    <li>دکمه «تحلیل کن» رو بزن و حقیقت تلخ رو ببین! 😈</li>
-                </ol>
+                <!-- کارت راهنما -->
+                <div class="info-card glass-card">
+                    <div class="info-icon">💡</div>
+                    <h3>چطوری کار می‌کنه؟</h3>
+                    <ol>
+                        <li>از <strong>تنظیمات اینستاگرام</strong> دیتا رو دانلود کن</li>
+                        <li>فایل‌های <code>followers_1.json</code> و <code>following.json</code> رو پیدا کن</li>
+                        <li>هر دو فایل رو اینجا آپلود کن</li>
+                        <li>نتیجه رو ببین و خروجی بگیر 🎉</li>
+                    </ol>
+                </div>
             </div>
 
-            <!-- پیش‌نمایش فرمت فایل -->
-            <div class="glass-card preview-card">
-                <div class="card-icon">🧪</div>
-                <h2>تست سریع</h2>
-                <p class="preview-hint">فایل JSON نداری؟ با دکمه زیر یه نمونه تستی بساز و امتحان کن!</p>
-                <button class="btn btn-demo" id="demo-btn">
-                    <span class="btn-icon">🎲</span>
-                    <span class="btn-text">ساخت داده تستی</span>
+            <!-- دکمه تحلیل -->
+            <div class="analyze-wrapper">
+                <button class="btn-analyze" id="analyzeBtn" disabled>
+                    <span class="btn-text">شروع تحلیل</span>
+                    <span class="btn-loader"></span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"/>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                    </svg>
+                </button>
+                <button class="btn-test" id="testBtn" title="تست با داده نمونه">
+                    🧪 تست سریع
                 </button>
             </div>
-
-            <!-- آپلود فالوورها -->
-            <div class="neo-card upload-card" id="followers-upload-card">
-                <div class="card-icon">👥</div>
-                <h3>فایل فالوورها</h3>
-                <p class="upload-hint">followers_1.json رو اینجا بنداز</p>
-                <div class="drop-zone" id="followers-drop-zone">
-                    <input type="file" id="followers-input" accept=".json" hidden>
-                    <label for="followers-input" class="drop-label">
-                        <span class="drop-icon">📁</span>
-                        <span class="drop-text">کلیک کن یا فایل رو بکش اینجا</span>
-                    </label>
-                </div>
-                <div class="file-status" id="followers-status">
-                    <span class="status-dot"></span>
-                    <span class="status-text">هنوز فایلی انتخاب نشده</span>
-                </div>
-            </div>
-
-            <!-- آپلود فالووینگ‌ها -->
-            <div class="neo-card upload-card" id="following-upload-card">
-                <div class="card-icon">👤</div>
-                <h3>فایل فالووینگ‌ها</h3>
-                <p class="upload-hint">following.json رو اینجا بنداز</p>
-                <div class="drop-zone" id="following-drop-zone">
-                    <input type="file" id="following-input" accept=".json" hidden>
-                    <label for="following-input" class="drop-label">
-                        <span class="drop-icon">📁</span>
-                        <span class="drop-text">کلیک کن یا فایل رو بکش اینجا</span>
-                    </label>
-                </div>
-                <div class="file-status" id="following-status">
-                    <span class="status-dot"></span>
-                    <span class="status-text">هنوز فایلی انتخاب نشده</span>
-                </div>
-            </div>
-
         </section>
 
-        <!-- دکمه‌ها -->
-        <section class="action-buttons">
-            <button class="btn btn-analyze" id="analyze-btn" disabled>
-                <span class="btn-icon">🚀</span>
-                <span class="btn-text">تحلیل کن!</span>
-            </button>
-            <button class="btn btn-clear" id="clear-btn">
-                <span class="btn-icon">🗑️</span>
-                <span class="btn-text">پاک کردن همه</span>
-            </button>
-            <button class="btn btn-export" id="export-btn" disabled>
-                <span class="btn-icon">📸</span>
-                <span class="btn-text">خروجی PNG</span>
-            </button>
-        </section>
+        <!-- ────────── بخش نمایش نتایج ────────── -->
+        <section class="results-section" id="resultsSection" style="display:none;">
+            
+            <!-- آمار کلی — بنتو گرید -->
+            <div class="bento-grid stats-grid" id="reportArea">
+                
+                <!-- کارت خلاصه آمار -->
+                <div class="stat-card glass-card stat-summary">
+                    <div class="stat-header">
+                        <h2>📊 خلاصه تحلیل</h2>
+                        <span class="analysis-date" id="analysisDate"></span>
+                    </div>
+                    <div class="stat-row">
+                        <div class="stat-item neo-inset">
+                            <span class="stat-number" id="totalFollowers">0</span>
+                            <span class="stat-label">فالوور</span>
+                        </div>
+                        <div class="stat-item neo-inset">
+                            <span class="stat-number" id="totalFollowing">0</span>
+                            <span class="stat-label">فالووینگ</span>
+                        </div>
+                        <div class="stat-item neo-inset highlight-ratio">
+                            <span class="stat-number" id="followbackRate">0%</span>
+                            <span class="stat-label">نرخ فالوبک</span>
+                        </div>
+                    </div>
+                    <!-- نوار پیشرفت فالوبک -->
+                    <div class="progress-wrapper">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill"></div>
+                        </div>
+                        <span class="progress-label" id="progressLabel">0 از 0 نفر فالوبک کردن</span>
+                    </div>
+                </div>
 
-        <!-- ============================================= -->
-        <!-- دیباگ: نمایش داده خام (مخفی بصورت پیشفرض)      -->
-        <!-- ============================================= -->
-        <section class="debug-section" id="debug-section" style="display:none;">
-            <div class="glass-card">
-                <h3>🐛 دیباگ - داده خام</h3>
-                <pre id="debug-output" class="debug-output"></pre>
+                <!-- کارت فالوبک نکرده‌ها -->
+                <div class="stat-card glass-card stat-unfollowers">
+                    <div class="stat-header">
+                        <div class="stat-badge badge-red">💔</div>
+                        <h3>فالوبک نکرده‌ها</h3>
+                        <span class="stat-count" id="unfollowersCount">0</span>
+                    </div>
+                    <div class="search-box">
+                        <input type="text" placeholder="جستجو..." class="search-input" data-list="unfollowersList">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"/>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                        </svg>
+                    </div>
+                    <ul class="user-list" id="unfollowersList"></ul>
+                </div>
+
+                <!-- کارت دوطرفه‌ها -->
+                <div class="stat-card glass-card stat-mutual">
+                    <div class="stat-header">
+                        <div class="stat-badge badge-green">🤝</div>
+                        <h3>فالوهای دوطرفه</h3>
+                        <span class="stat-count" id="mutualCount">0</span>
+                    </div>
+                    <div class="search-box">
+                        <input type="text" placeholder="جستجو..." class="search-input" data-list="mutualList">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"/>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                        </svg>
+                    </div>
+                    <ul class="user-list" id="mutualList"></ul>
+                </div>
+
+                <!-- کارت فن‌ها -->
+                <div class="stat-card glass-card stat-fans">
+                    <div class="stat-header">
+                        <div class="stat-badge badge-purple">🌟</div>
+                        <h3>فن‌های شما</h3>
+                        <span class="stat-count" id="fansCount">0</span>
+                    </div>
+                    <div class="search-box">
+                        <input type="text" placeholder="جستجو..." class="search-input" data-list="fansList">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"/>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                        </svg>
+                    </div>
+                    <ul class="user-list" id="fansList"></ul>
+                </div>
+
+                <!-- کارت نمودار دایره‌ای -->
+                <div class="stat-card glass-card stat-chart">
+                    <h3>📈 نمودار توزیع</h3>
+                    <canvas id="pieChart" width="300" height="300"></canvas>
+                    <div class="chart-legend" id="chartLegend"></div>
+                </div>
+
+                <!-- کارت آخرین تغییرات -->
+                <div class="stat-card glass-card stat-timeline">
+                    <h3>🕐 تایم‌لاین فالوو</h3>
+                    <p class="timeline-desc">آخرین فالوورها و فالووینگ‌ها بر اساس زمان</p>
+                    <ul class="timeline-list" id="timelineList"></ul>
+                </div>
+            </div>
+
+            <!-- دکمه‌های عملیات -->
+            <div class="action-bar">
+                <button class="btn-action btn-export" id="exportPng">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                        <polyline points="7 10 12 15 17 10"/>
+                        <line x1="12" y1="15" x2="12" y2="3"/>
+                    </svg>
+                    خروجی PNG
+                </button>
+                <button class="btn-action btn-csv" id="exportCsv">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                        <polyline points="14 2 14 8 20 8"/>
+                        <line x1="16" y1="13" x2="8" y2="13"/>
+                        <line x1="16" y1="17" x2="8" y2="17"/>
+                    </svg>
+                    خروجی CSV
+                </button>
+                <button class="btn-action btn-reset" id="resetBtn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="1 4 1 10 7 10"/>
+                        <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/>
+                    </svg>
+                    شروع مجدد
+                </button>
             </div>
         </section>
 
-        <!-- ============================================= -->
-        <!-- بخش نتایج                                      -->
-        <!-- ============================================= -->
-        <section class="results-section" id="results-section" style="display:none;">
-
-            <!-- آمار -->
-            <div class="bento-grid stats-grid" id="stats-container">
-                <div class="glass-card stat-card stat-followers">
-                    <div class="stat-icon">👥</div>
-                    <div class="stat-info">
-                        <span class="stat-number" id="stat-followers">0</span>
-                        <span class="stat-label">فالوور</span>
-                    </div>
+        <!-- ────────── بخش دیباگ (مخفی به صورت پیش‌فرض) ────────── -->
+        <section class="debug-section" id="debugSection" style="display:none;">
+            <div class="glass-card debug-card">
+                <div class="debug-header">
+                    <h3>🐛 کنسول دیباگ</h3>
+                    <button class="btn-icon" id="toggleDebug">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="18" y1="6" x2="6" y2="18"/>
+                            <line x1="6" y1="6" x2="18" y2="18"/>
+                        </svg>
+                    </button>
                 </div>
-                <div class="glass-card stat-card stat-following">
-                    <div class="stat-icon">👤</div>
-                    <div class="stat-info">
-                        <span class="stat-number" id="stat-following">0</span>
-                        <span class="stat-label">فالووینگ</span>
-                    </div>
-                </div>
-                <div class="glass-card stat-card stat-not-following-back">
-                    <div class="stat-icon">💔</div>
-                    <div class="stat-info">
-                        <span class="stat-number" id="stat-not-back">0</span>
-                        <span class="stat-label">فالوبک نکرده</span>
-                    </div>
-                </div>
-                <div class="glass-card stat-card stat-mutual">
-                    <div class="stat-icon">🤝</div>
-                    <div class="stat-info">
-                        <span class="stat-number" id="stat-mutual">0</span>
-                        <span class="stat-label">دوطرفه</span>
-                    </div>
-                </div>
-                <div class="glass-card stat-card stat-fans">
-                    <div class="stat-icon">🌟</div>
-                    <div class="stat-info">
-                        <span class="stat-number" id="stat-fans">0</span>
-                        <span class="stat-label">فن‌های تو</span>
-                    </div>
-                </div>
-                <div class="glass-card stat-card stat-ratio">
-                    <div class="stat-icon">📊</div>
-                    <div class="stat-info">
-                        <span class="stat-number" id="stat-ratio">0%</span>
-                        <span class="stat-label">نرخ فالوبک</span>
-                    </div>
-                </div>
+                <pre id="debugOutput" class="debug-output"></pre>
             </div>
-
-            <!-- تب‌ها و لیست -->
-            <div class="tabs-wrapper">
-                <div class="tabs-header">
-                    <button class="tab-btn active" data-tab="not-following-back">💔 فالوبک نکرده‌ها (<span class="tab-count" id="tab-count-nfb">0</span>)</button>
-                    <button class="tab-btn" data-tab="mutual">🤝 دوطرفه‌ها (<span class="tab-count" id="tab-count-mutual">0</span>)</button>
-                    <button class="tab-btn" data-tab="fans">🌟 فن‌ها (<span class="tab-count" id="tab-count-fans">0</span>)</button>
-                </div>
-                <div class="search-wrapper">
-                    <input type="text" class="search-input" id="search-input" placeholder="🔍 جستجو در لیست...">
-                </div>
-                <div class="tab-content active" id="tab-not-following-back">
-                    <div class="list-container" id="list-not-following-back"></div>
-                </div>
-                <div class="tab-content" id="tab-mutual">
-                    <div class="list-container" id="list-mutual"></div>
-                </div>
-                <div class="tab-content" id="tab-fans">
-                    <div class="list-container" id="list-fans"></div>
-                </div>
-            </div>
-
         </section>
-
     </main>
 
-    <!-- فوتر -->
+    <!-- ══════════════════════════════════════════════════════════ 
+         فوتر
+    ══════════════════════════════════════════════════════════ -->
     <footer class="app-footer">
-        <p>ساخته شده با ❤️ و کمی کنجکاوی | Follow Analyzer v2.1</p>
+        <p>ساخته‌شده با ❤️ برای کاوش در دنیای اینستاگرام</p>
+        <span class="version">v3.0.0 — Calibrated Edition</span>
     </footer>
 
+    <!-- ──────────── نوتیفیکیشن تست ──────────── -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- ──────────── اسکریپت اصلی ──────────── -->
     <script src="script.js"></script>
 </body>
 </html>
