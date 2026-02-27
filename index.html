@@ -12,6 +12,19 @@
     
     <!-- ──────────── استایل‌شیت اصلی ──────────── -->
     <link rel="stylesheet" href="style.css">
+
+    <!-- 🔗 PWA Manifest -->
+    <link rel="manifest" href="./manifest.json">
+    
+    <!-- 📱 iOS/Safari Meta Tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="InstaLens">
+    <link rel="apple-touch-icon" href="./icons/icon-192x192.png">
+    
+    <!-- 🎨 Theme Color -->
+    <meta name="theme-color" content="#F5F0EB">
+
 </head>
 <body>
 
@@ -294,5 +307,31 @@
 
     <!-- ──────────── اسکریپت اصلی ──────────── -->
     <script src="script.js"></script>
+
+    <!-- 📡 Service Worker Registration -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('./sw.js', { scope: './' })
+            .then((reg) => {
+              console.log('✅ Service Worker registered:', reg.scope);
+    
+              // آپدیت خودکار
+              reg.addEventListener('updatefound', () => {
+                const newSW = reg.installing;
+                newSW.addEventListener('statechange', () => {
+                  if (newSW.state === 'activated') {
+                    console.log('🔄 نسخه جدید فعال شد!');
+                  }
+                });
+              });
+            })
+            .catch((err) => {
+              console.warn('❌ SW registration failed:', err);
+            });
+        });
+      }
+    </script>
+
 </body>
 </html>
